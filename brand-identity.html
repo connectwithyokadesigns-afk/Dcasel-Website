@@ -1,0 +1,1019 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Brand Identity — Dcasel Studio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=Syne:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+:root{
+  --bone:#f4f1ec;--off:#eae6de;--parchm:#d9d4c9;
+  --mid:#a09b90;--muted:#6e6860;--ink:#0e0d0b;
+  --dark:#141210;--charcoal:#1c1a17;
+  --ember:#d44c27;--ember2:#e86240;
+  --ease:cubic-bezier(0.22,1,0.36,1);
+  --spring:cubic-bezier(0.34,1.56,0.64,1);
+  --px:20px;--sy:80px;
+}
+/* ── MOBILE MENU ── */
+.mob{
+  position:fixed;inset:0;z-index:600;
+  background:var(--ink);
+  display:grid;
+  grid-template-rows:64px 1fr auto;
+  transform:translateY(-100%);
+  transition:transform .55s cubic-bezier(0.22,1,0.36,1);
+  pointer-events:none;
+  overflow:hidden;
+}
+.mob.open{transform:translateY(0);pointer-events:auto;}
+.mob-header{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 var(--px);
+  border-bottom:1px solid rgba(244,241,236,.08);
+}
+.mob-logo{display:inline-flex;align-items:center;text-decoration:none;}
+.mob-logo .logo-svg{height:24px;width:auto;display:block;}
+.mob-logo .logo-main{fill:var(--bone);}
+.mob-logo .logo-accent{fill:#d44c27;}
+.mob-close{
+  width:40px;height:40px;border-radius:50%;
+  background:rgba(244,241,236,.08);border:1px solid rgba(244,241,236,.12);
+  display:flex;align-items:center;justify-content:center;
+  cursor:pointer;transition:background .2s;flex-shrink:0;
+}
+.mob-close:active{background:rgba(244,241,236,.2);}
+.mob-close svg{width:14px;height:14px;stroke:rgba(244,241,236,.8);fill:none;stroke-width:2;stroke-linecap:round;}
+.mob-body{
+  display:flex;flex-direction:column;align-items:stretch;justify-content:center;
+  padding:28px var(--px) 20px;
+  overflow:auto;
+  -webkit-overflow-scrolling:touch;
+}
+.mob-links{
+  display:block;width:100%;margin-bottom:24px;
+  flex-shrink:0;min-height:max-content;
+}
+.mob-links a{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(1.7rem,6.5vw,2.6rem);
+  font-weight:300;font-style:italic;
+  color:var(--bone);
+  padding:10px 0;
+  border-bottom:1px solid rgba(244,241,236,.08);
+  text-decoration:none;
+  display:block;
+}
+.mob-links a:active{color:var(--ember);}
+.mob-btn{
+  display:flex;align-items:center;justify-content:center;
+  width:100%;padding:.85rem 1.5rem;
+  background:var(--ember);border-radius:100px;
+  color:var(--bone);font-size:.75rem;font-weight:700;
+  letter-spacing:.1em;text-transform:uppercase;
+  text-decoration:none;border:none;cursor:pointer;flex-shrink:0;
+}
+.mob-btn:active{opacity:.85;}
+.mob-foot{padding:12px var(--px) 16px;border-top:1px solid rgba(244,241,236,.06);}
+.mob-foot-txt{font-size:.58rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:rgba(244,241,236,.22);}
+body.mob-open #cursor,body.mob-open #cursor-follower,body.mob-open .cs-cursor{display:none!important;opacity:0!important;}
+body.mob-open .nav-shell{pointer-events:none;opacity:0;transition:opacity .2s;}
+
+@media(min-width:480px){:root{--px:28px;}}
+@media(min-width:768px){:root{--px:44px;--sy:110px;}}
+@media(min-width:1024px){:root{--px:64px;--sy:140px;}}
+@media(min-width:1280px){:root{--px:80px;--sy:160px;}}
+body{font-family:'Syne',sans-serif;background:var(--bone);color:var(--ink);overflow-x:hidden;-webkit-font-smoothing:antialiased;}
+img{display:block;max-width:100%;height:auto;}
+a{color:inherit;text-decoration:none;}
+button{font-family:inherit;}
+
+/* CURSOR */
+}
+/* PROGRESS */
+#prog{position:fixed;top:0;left:0;height:1px;width:100%;background:var(--ember);z-index:9999;transform:scaleX(0);transform-origin:left;}
+
+/* NOISE */
+.noise{position:fixed;inset:0;pointer-events:none;z-index:8000;opacity:.022;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");}
+
+/* NAV — Apple Liquid Glass (4-layer authentic) */
+:root{--nav-h:72px;}
+
+
+.nav-shell{
+  position:fixed;top:16px;left:50%;transform:translateX(-50%);
+  z-index:500;
+  width:calc(100% - 2*var(--px));
+  max-width:1000px;
+  pointer-events:none;
+  overflow:visible;
+  transition:top .5s cubic-bezier(0.22,1,0.36,1);
+}
+.nav-shell.scrolled{top:10px;}
+
+nav{
+  pointer-events:auto;
+  position:relative;
+  display:flex;align-items:center;justify-content:space-between;
+  height:56px;
+  padding:0 8px 0 22px;
+  border-radius:100px;
+  background:transparent;
+  border:none;
+  box-shadow:
+    0 8px 32px rgba(14,13,11,.11),
+    0 2px 8px rgba(14,13,11,.07),
+    0 0 0 0.5px rgba(14,13,11,.06);
+  transition:box-shadow .4s cubic-bezier(0.22,1,0.36,1),transform .4s cubic-bezier(0.22,1,0.36,1);
+}
+nav:hover{}
+
+/* LAYER 1: Distortion — the actual lensing */
+.glass-filter{
+  position:absolute;inset:0;border-radius:100px;
+  backdrop-filter:url(#lg-refract) blur(0.5px);
+  -webkit-backdrop-filter:url(#lg-refract) blur(0.5px);
+  z-index:0;
+}
+
+/* LAYER 2: Frosted overlay */
+.glass-overlay{
+  position:absolute;inset:0;border-radius:100px;
+  background:
+    linear-gradient(
+      145deg,
+      rgba(244,241,236,.70) 0%,
+      rgba(234,230,222,.50) 50%,
+      rgba(244,241,236,.62) 100%
+    );
+  backdrop-filter:blur(28px) saturate(200%) brightness(1.06);
+  -webkit-backdrop-filter:blur(28px) saturate(200%) brightness(1.06);
+  border:1px solid rgba(244,241,236,.55);
+  border-top:1.5px solid rgba(255,255,255,.85);
+  border-bottom:1px solid rgba(14,13,11,.04);
+  z-index:1;
+}
+
+/* LAYER 3: Specular / Fresnel rim */
+.glass-specular{
+  position:absolute;inset:0;border-radius:100px;
+  background:
+    linear-gradient(
+      168deg,
+      rgba(255,255,255,.40) 0%,
+      rgba(255,255,255,.14) 26%,
+      transparent 46%,
+      transparent 70%,
+      rgba(255,255,255,.06) 86%,
+      rgba(255,255,255,.12) 100%
+    );
+  z-index:2;
+  pointer-events:none;
+  animation:navSpecularShift 9s ease-in-out infinite;
+}
+@keyframes navSpecularShift{
+  0%,100%{opacity:.85;}
+  50%{
+    opacity:1;
+    background:
+      linear-gradient(
+        168deg,
+        rgba(255,255,255,.44) 0%,
+        rgba(255,255,255,.16) 26%,
+        rgba(212,76,39,.025) 46%,
+        transparent 66%,
+        rgba(255,255,255,.07) 88%,
+        rgba(255,255,255,.14) 100%
+      );
+  }
+}
+.glass-specular::after{
+  content:'';position:absolute;inset:0;border-radius:100px;
+  box-shadow:
+    inset 0 1.5px 0 rgba(255,255,255,.78),
+    inset 0 -1px 0 rgba(14,13,11,.04),
+    inset 1px 0 0 rgba(255,255,255,.20),
+    inset -1px 0 0 rgba(255,255,255,.16);
+  pointer-events:none;
+}
+
+/* LAYER 4: Content — sits above everything */
+.glass-content{
+  position:relative;z-index:3;
+  display:flex;align-items:center;justify-content:space-between;
+  width:100%;height:100%;
+  overflow:visible;
+}
+
+/* LOGO */
+.logo{display:inline-flex;align-items:center;text-decoration:none;flex-shrink:0;}
+.logo-svg{height:26px;width:auto;display:block;}
+@media(min-width:768px){.logo-svg{height:30px;}}
+.logo-main{fill:var(--ink);}
+.logo-accent{fill:#d44c27;}
+
+/* DESKTOP LINKS */
+.nav-links{display:none;align-items:center;gap:2px;}
+@media(min-width:900px){.nav-links{display:flex;}}
+.nav-item{position:relative;}
+.nav-link{
+  font-size:.6rem;font-weight:700;letter-spacing:.13em;text-transform:uppercase;
+  color:var(--muted);padding:7px 13px;border-radius:100px;
+  display:flex;align-items:center;gap:5px;
+  transition:color .2s,background .2s,box-shadow .2s;
+}
+.nav-link:hover,.nav-link.active{
+  color:var(--ink);
+  background:rgba(255,255,255,.54);
+  box-shadow:0 1px 4px rgba(14,13,11,.07),inset 0 1px 0 rgba(255,255,255,.72),0 0 0 1px rgba(255,255,255,.42);
+}
+.nav-chevron{width:7px;height:7px;flex-shrink:0;transition:transform .25s cubic-bezier(0.22,1,0.36,1);}
+.nav-item.drop-open .nav-chevron{transform:rotate(180deg);}
+
+/* DROPDOWN */
+.nav-drop{
+  position:absolute;top:calc(100% + 10px);left:50%;
+  transform:translateX(-50%) translateY(-6px);
+  border-radius:18px;padding:5px;min-width:196px;
+  opacity:0;pointer-events:none;
+  transition:opacity .25s,transform .25s;
+  display:none;z-index:2000;
+  background:rgba(244,241,236,.90);
+  backdrop-filter:blur(32px) saturate(200%);
+  -webkit-backdrop-filter:blur(32px) saturate(200%);
+  border:1px solid rgba(255,255,255,.72);
+  border-top:1.5px solid rgba(255,255,255,.90);
+  box-shadow:0 16px 48px rgba(14,13,11,.12),0 4px 12px rgba(14,13,11,.07),inset 0 1px 0 rgba(255,255,255,.6);
+}
+.nav-drop.open{display:block;opacity:1;pointer-events:auto;transform:translateX(-50%) translateY(0);}
+.nav-drop a{
+  display:block;font-size:.6rem;font-weight:700;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--muted);
+  padding:.55rem .9rem;border-radius:12px;
+  transition:color .18s,background .18s;white-space:nowrap;
+}
+.nav-drop a:hover,.nav-drop a.active{color:var(--ink);background:rgba(255,255,255,.55);box-shadow:inset 0 1px 0 rgba(255,255,255,.6);}
+.nav-drop a.active{color:var(--ember)!important;}
+.drop-div{height:1px;background:rgba(14,13,11,.07);margin:3px 8px;}
+
+/* CTA BUTTON — nested glass pill */
+.nav-cta{
+  display:none;font-size:.6rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--ink);padding:0 8px 0 18px;height:40px;border-radius:100px;
+  background:rgba(255,255,255,.62);
+  border:1px solid rgba(255,255,255,.72);
+  border-top:1.5px solid rgba(255,255,255,.92);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.80),inset 0 -1px 0 rgba(14,13,11,.04),0 2px 8px rgba(14,13,11,.08),0 1px 3px rgba(14,13,11,.05);
+  transition:background .22s,box-shadow .22s,transform .22s;
+  cursor:pointer;gap:8px;align-items:center;
+}
+.nav-cta:hover{
+  background:rgba(255,255,255,.82);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.92),0 6px 20px rgba(14,13,11,.11),0 2px 6px rgba(14,13,11,.07);
+  transform:translateY(-1px);
+}
+@media(min-width:900px){.nav-cta{display:flex;}}
+.nav-cta-arrow{
+  width:24px;height:24px;border-radius:50%;
+  background:rgba(14,13,11,.09);
+  display:inline-flex;align-items:center;justify-content:center;
+  transition:background .2s,transform .2s;flex-shrink:0;
+}
+.nav-cta:hover .nav-cta-arrow{background:rgba(212,76,39,.15);transform:translateX(1px);}
+.nav-cta-arrow svg{width:9px;height:9px;stroke:var(--ink);fill:none;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round;}
+
+/* HAMBURGER */
+.ham{
+  display:flex;flex-direction:column;justify-content:center;align-items:center;gap:5px;
+  background:rgba(255,255,255,.52);
+  border:1px solid rgba(255,255,255,.68);
+  border-top:1.5px solid rgba(255,255,255,.88);
+  border-radius:100px;padding:0;margin:0;width:40px;height:40px;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.72),0 1px 4px rgba(14,13,11,.07);
+  transition:background .2s,box-shadow .2s;cursor:pointer;
+}
+.ham:hover{background:rgba(255,255,255,.72);}
+.ham span{display:block;width:18px;height:1.5px;background:var(--ink);border-radius:1px;transition:transform .32s cubic-bezier(0.22,1,0.36,1),opacity .22s;}
+.ham.open span:nth-child(1){transform:translateY(6.5px) rotate(45deg);}
+.ham.open span:nth-child(2){opacity:0;}
+.ham.open span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg);}
+@media(min-width:900px){.ham{display:none;}}
+
+/* MOBILE MENU */
+
+/* DARK SECTION VARIANT (dnav) */
+nav.dnav .glass-overlay{
+  background:
+    linear-gradient(
+      145deg,
+      rgba(20,18,16,.80) 0%,
+      rgba(14,12,10,.62) 50%,
+      rgba(22,20,17,.74) 100%
+    );
+  border-color:rgba(255,255,255,.08);
+  border-top-color:rgba(255,255,255,.15);
+}
+nav.dnav .glass-specular{
+  background:
+    linear-gradient(
+      168deg,
+      rgba(255,255,255,.13) 0%,
+      rgba(255,255,255,.04) 26%,
+      transparent 46%,
+      transparent 70%,
+      rgba(255,255,255,.03) 88%,
+      rgba(255,255,255,.06) 100%
+    );
+}
+nav.dnav .glass-specular::after{
+  box-shadow:
+    inset 0 1.5px 0 rgba(255,255,255,.18),
+    inset 0 -1px 0 rgba(0,0,0,.22),
+    inset 1px 0 0 rgba(255,255,255,.06),
+    inset -1px 0 0 rgba(255,255,255,.05);
+}
+nav.dnav{box-shadow:0 8px 32px rgba(0,0,0,.24),0 2px 8px rgba(0,0,0,.18);}
+nav.dnav .logo-main{fill:var(--bone);}
+nav.dnav .nav-link{color:rgba(244,241,236,.44);}
+nav.dnav .nav-link:hover,nav.dnav .nav-link.active{
+  color:var(--bone);background:rgba(255,255,255,.08);
+  box-shadow:0 1px 4px rgba(0,0,0,.15),inset 0 1px 0 rgba(255,255,255,.12);
+}
+nav.dnav .nav-drop{
+  background:rgba(22,20,17,.92);
+  backdrop-filter:blur(32px) saturate(200%);
+  -webkit-backdrop-filter:blur(32px) saturate(200%);
+  border-color:rgba(255,255,255,.08);border-top-color:rgba(255,255,255,.18);
+  box-shadow:0 16px 48px rgba(0,0,0,.28),inset 0 1px 0 rgba(255,255,255,.08);
+}
+nav.dnav .nav-drop a{color:rgba(244,241,236,.40);}
+nav.dnav .nav-drop a:hover{color:var(--bone);background:rgba(255,255,255,.07);}
+nav.dnav .nav-drop a.active{color:var(--ember)!important;}
+nav.dnav .drop-div{background:rgba(255,255,255,.06);}
+nav.dnav .nav-cta{
+  color:var(--bone);background:rgba(255,255,255,.09);
+  border-color:rgba(255,255,255,.14);border-top-color:rgba(255,255,255,.24);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.13),0 2px 8px rgba(0,0,0,.15);
+}
+nav.dnav .nav-cta:hover{
+  background:rgba(212,76,39,.90);border-color:rgba(212,76,39,.5);
+  box-shadow:inset 0 1px 0 rgba(255,200,160,.22),0 6px 20px rgba(212,76,39,.30);
+}
+nav.dnav .nav-cta-arrow{background:rgba(255,255,255,.1);}
+nav.dnav .nav-cta:hover .nav-cta-arrow{background:rgba(255,255,255,.22);}
+nav.dnav .nav-cta-arrow svg{stroke:var(--bone);}
+nav.dnav .ham{
+  background:rgba(255,255,255,.07);border-color:rgba(255,255,255,.11);
+  border-top-color:rgba(255,255,255,.20);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.1);
+}
+nav.dnav .ham:hover{background:rgba(255,255,255,.14);}
+nav.dnav .ham span{background:var(--bone);}
+
+/* HERO / PAGE SPACING */
+.pg-hero{padding-top:calc(var(--nav-h) + 42px);}
+#hero{padding-top:calc(var(--nav-h) + 10px);}
+.cs-hero{padding-top:calc(var(--nav-h) + 10px);}
+.post-layout{padding-top:0;}
+.post-toc{top:calc(var(--nav-h) + 20px) !important;height:calc(100vh - var(--nav-h) - 20px) !important;}
+/* UTILS */
+.rev{opacity:0;transform:translateY(24px);transition:opacity .85s var(--ease),transform .85s var(--ease);}
+.rev.vis{opacity:1;transform:none;}
+.d1{transition-delay:.1s;}.d2{transition-delay:.2s;}.d3{transition-delay:.3s;}.d4{transition-delay:.4s;}
+.sec-tag{font-size:.58rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);display:flex;align-items:center;gap:10px;}
+.sec-tag::before{content:'';width:18px;height:1px;background:var(--parchm);flex-shrink:0;}
+.btn-p{display:inline-flex;align-items:center;gap:8px;font-size:.66rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--bone);background:var(--ink);padding:.78rem 1.5rem;border-radius:100px;border:none;transition:transform .28s var(--ease),box-shadow .28s;}
+.btn-p:hover{transform:translateY(-2px);box-shadow:0 10px 36px rgba(14,13,11,.18);}
+.btn-p svg{width:11px;height:11px;stroke:var(--bone);fill:none;flex-shrink:0;}
+.btn-o{display:inline-flex;align-items:center;gap:8px;font-size:.66rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--ink);padding:.78rem 1.5rem;border-radius:100px;border:1px solid rgba(14,13,11,.18);transition:background .22s;}
+.btn-o:hover{background:var(--off);}
+.btn-ember{display:inline-flex;align-items:center;gap:8px;font-size:.66rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--bone);background:var(--ember);padding:.78rem 1.5rem;border-radius:100px;border:none;transition:transform .28s var(--ease),opacity .28s;}
+.btn-ember:hover{transform:translateY(-2px);opacity:.9;}
+.btn-ember svg{width:11px;height:11px;stroke:var(--bone);fill:none;}
+
+/* ── PAGE HERO ── */
+.pg-hero{min-height:88svh;display:flex;flex-direction:column;justify-content:flex-end;padding:0 var(--px) var(--sy);position:relative;overflow:hidden;background:var(--bone);}
+.pg-hero-grain{position:absolute;inset:0;pointer-events:none;opacity:.028;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='ng'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23ng)'/%3E%3C/svg%3E");}
+.pg-hero-num{position:absolute;right:var(--px);bottom:calc(var(--sy) + 40px);font-family:'Cormorant Garamond',serif;font-size:clamp(120px,22vw,280px);font-weight:300;line-height:1;color:transparent;-webkit-text-stroke:1px rgba(14,13,11,.06);pointer-events:none;user-select:none;letter-spacing:-.04em;}
+.pg-breadcrumb{font-size:.56rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);display:flex;align-items:center;gap:8px;margin-bottom:clamp(28px,4vw,44px);opacity:0;transform:translateY(12px);transition:opacity .7s .2s var(--ease),transform .7s .2s var(--ease);}
+.pg-breadcrumb.vis{opacity:1;transform:none;}
+.pg-breadcrumb a{color:var(--mid);transition:color .2s;}
+.pg-breadcrumb a:hover{color:var(--ink);}
+.pg-breadcrumb span{color:var(--ember);}
+.pg-h1{font-family:'Cormorant Garamond',serif;font-size:clamp(56px,12vw,152px);font-weight:400;line-height:.86;letter-spacing:-.025em;overflow:hidden;}
+.pg-h1 .line{display:block;opacity:0;transform:translateY(100%);transition:opacity .9s var(--ease),transform .9s var(--ease);}
+.pg-h1 .line.vis{opacity:1;transform:none;}
+.pg-h1 .it{font-style:italic;}
+.pg-h1 .em{color:var(--ember);}
+.pg-h1 .ol{color:transparent;-webkit-text-stroke:1.5px rgba(14,13,11,.2);}
+.pg-hero-foot{padding-top:clamp(28px,4vw,48px);border-top:1px solid rgba(14,13,11,.1);display:flex;flex-wrap:wrap;gap:24px;align-items:center;justify-content:space-between;opacity:0;transform:translateY(16px);transition:opacity .85s .8s var(--ease),transform .85s .8s var(--ease);}
+.pg-hero-foot.vis{opacity:1;transform:none;}
+.pg-hero-desc{font-size:.9rem;font-weight:500;line-height:1.82;color:var(--muted);max-width:52ch;}
+.pg-hero-tags{display:flex;gap:7px;flex-wrap:wrap;}
+.pg-htag{font-size:.52rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);padding:.24rem .8rem;border:1px solid rgba(14,13,11,.14);border-radius:100px;}
+
+/* ── INTRO SPLIT ── */
+.intro-split{padding:var(--sy) var(--px);display:grid;grid-template-columns:1fr;gap:48px;}
+@media(min-width:860px){.intro-split{grid-template-columns:1fr 1fr;gap:80px;align-items:start;}}
+.intro-lead{font-family:'Cormorant Garamond',serif;font-size:clamp(22px,3.2vw,38px);font-weight:400;line-height:1.3;letter-spacing:-.015em;color:var(--ink);}
+.intro-body{font-size:.86rem;font-weight:500;line-height:1.9;color:var(--muted);}
+.intro-body p+p{margin-top:16px;}
+
+/* ── APPROACH STEPS ── */
+.approach{padding:var(--sy) var(--px);background:var(--ink);}
+.approach-hd{margin-bottom:clamp(48px,6vw,72px);}
+.approach-title{font-family:'Cormorant Garamond',serif;font-size:clamp(34px,6vw,76px);font-weight:300;color:var(--bone);line-height:.9;letter-spacing:-.02em;margin-top:12px;}
+.approach-title em{font-style:italic;color:var(--ember);}
+.steps{display:flex;flex-direction:column;}
+.step{display:grid;grid-template-columns:60px 1fr;gap:0;padding:clamp(28px,4vw,48px) 0;border-top:1px solid rgba(244,241,236,.06);position:relative;transition:padding-left .38s var(--ease);}
+.step:last-child{border-bottom:1px solid rgba(244,241,236,.06);}
+.step:hover{padding-left:12px;}
+@media(min-width:860px){.step{grid-template-columns:120px 1fr 1fr;gap:40px;align-items:start;}}
+.step-n{font-family:'Cormorant Garamond',serif;font-size:clamp(2rem,4vw,3.5rem);font-weight:300;color:rgba(244,241,236,.1);line-height:1;transition:color .38s;}
+.step:hover .step-n{color:var(--ember);}
+.step-body{padding-left:16px;}
+@media(min-width:860px){.step-body{padding-left:0;}}
+.step-title{font-family:'Cormorant Garamond',serif;font-size:clamp(20px,2.6vw,34px);font-weight:400;color:var(--bone);line-height:1;letter-spacing:-.01em;margin-bottom:10px;transition:color .28s;}
+.step:hover .step-title{color:var(--ember);}
+.step-desc{font-size:.82rem;font-weight:500;line-height:1.85;color:rgba(244,241,236,.32);max-width:42ch;transition:color .38s;}
+.step:hover .step-desc{color:rgba(244,241,236,.5);}
+.step-tags{display:none;}
+@media(min-width:860px){.step-tags{display:flex;flex-wrap:wrap;gap:7px;align-items:flex-start;padding-top:4px;}}
+.step-tag{font-size:.52rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:rgba(244,241,236,.22);padding:.2rem .68rem;border:1px solid rgba(244,241,236,.08);border-radius:100px;transition:border-color .32s,color .32s;}
+.step:hover .step-tag{border-color:rgba(212,76,39,.28);color:rgba(212,76,39,.65);}
+
+/* ── DELIVERABLES ── */
+.deliverables{padding:var(--sy) var(--px);background:var(--off);}
+.del-grid{display:grid;grid-template-columns:1fr;gap:48px;}
+@media(min-width:860px){.del-grid{grid-template-columns:1fr 1fr;gap:80px;align-items:start;}}
+.del-intro{}
+.del-title{font-family:'Cormorant Garamond',serif;font-size:clamp(28px,4.5vw,56px);font-weight:400;line-height:.92;letter-spacing:-.02em;margin-top:12px;margin-bottom:24px;}
+.del-sub{font-size:.84rem;font-weight:500;line-height:1.85;color:var(--muted);}
+.del-list{display:flex;flex-direction:column;gap:0;border-top:1px solid rgba(14,13,11,.1);}
+.del-item{display:flex;align-items:center;justify-content:space-between;padding:18px 0;border-bottom:1px solid rgba(14,13,11,.07);gap:16px;transition:padding-left .28s var(--ease);}
+.del-item:hover{padding-left:8px;}
+.del-name{font-family:'Cormorant Garamond',serif;font-size:clamp(18px,2.2vw,26px);font-weight:400;letter-spacing:-.01em;}
+.del-icon{width:32px;height:32px;border-radius:50%;border:1px solid rgba(14,13,11,.1);display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:background .28s,border-color .28s,transform .38s var(--spring);}
+.del-item:hover .del-icon{background:var(--ember);border-color:var(--ember);transform:rotate(45deg);}
+.del-icon svg{width:10px;height:10px;stroke:var(--ink);fill:none;transition:stroke .28s;}
+.del-item:hover .del-icon svg{stroke:var(--bone);}
+
+/* ── CASE STUDIES ── */
+.cases{padding:var(--sy) var(--px);background:var(--dark);}
+.cases-hd{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:clamp(36px,5vw,56px);flex-wrap:wrap;gap:16px;border-bottom:1px solid rgba(244,241,236,.06);padding-bottom:clamp(28px,3vw,40px);}
+.cases-title{font-family:'Cormorant Garamond',serif;font-size:clamp(32px,6vw,72px);font-weight:300;font-style:italic;color:var(--bone);line-height:.9;letter-spacing:-.02em;margin-top:12px;}
+.cases-grid{display:grid;grid-template-columns:1fr;gap:20px;}
+@media(min-width:600px){.cases-grid{grid-template-columns:1fr 1fr;}}
+@media(min-width:1024px){.cases-grid{grid-template-columns:1fr 1fr 1fr;}}
+.cs-card{position:relative;overflow:hidden;background:#0a0908;aspect-ratio:3/4;}
+.cs-card.wide{grid-column:span 2;}
+.cs-img{position:absolute;inset:0;}
+.cs-img img{width:100%;height:100%;object-fit:cover;filter:grayscale(20%) brightness(.58);transition:filter 1s var(--ease),transform 1.1s var(--ease);}
+.cs-card:hover .cs-img img{filter:grayscale(0%) brightness(.75);transform:scale(1.04);}
+.cs-info{position:absolute;bottom:0;left:0;right:0;padding:24px 20px 20px;background:linear-gradient(to top,rgba(14,13,11,.98) 0%,rgba(14,13,11,.55) 55%,transparent 100%);}
+.cs-cat{font-size:.54rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--ember);margin-bottom:6px;display:block;}
+.cs-name{font-family:'Cormorant Garamond',serif;font-size:clamp(20px,2.8vw,30px);font-weight:400;color:var(--bone);line-height:.95;letter-spacing:-.02em;margin-bottom:8px;}
+.cs-tags{display:flex;gap:4px;flex-wrap:wrap;margin-bottom:12px;}
+.cs-tag-sm{font-size:.48rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(244,241,236,.32);padding:.12rem .5rem;border:1px solid rgba(244,241,236,.1);border-radius:100px;}
+.cs-link{display:inline-flex;align-items:center;gap:6px;font-size:.58rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:rgba(244,241,236,.5);transition:color .28s;}
+.cs-card:hover .cs-link{color:var(--bone);}
+.cs-link svg{width:9px;height:9px;stroke:currentColor;fill:none;transition:transform .28s;}
+.cs-card:hover .cs-link svg{transform:translate(2px,-2px);}
+
+/* ── WHY US ── */
+.why-panel{padding:var(--sy) var(--px);background:var(--charcoal);}
+.why-grid{display:grid;grid-template-columns:1fr;gap:clamp(40px,6vw,64px);}
+@media(min-width:960px){.why-grid{grid-template-columns:5fr 7fr;gap:80px;}}
+.why-sticky{}
+@media(min-width:960px){.why-sticky{position:sticky;top:96px;}}
+.why-title{font-family:'Cormorant Garamond',serif;font-size:clamp(30px,4.5vw,56px);font-weight:300;font-style:italic;color:var(--bone);line-height:.92;letter-spacing:-.02em;margin-top:12px;margin-bottom:20px;}
+.why-sub{font-size:.84rem;font-weight:500;line-height:1.85;color:rgba(244,241,236,.38);max-width:34ch;}
+.why-nums{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:clamp(28px,4vw,44px);}
+.why-num{padding-left:14px;border-left:2px solid var(--ember);}
+.why-num-n{font-family:'Cormorant Garamond',serif;font-size:clamp(2rem,4vw,3rem);font-weight:300;color:var(--bone);display:block;line-height:1;margin-bottom:4px;}
+.why-num-l{font-size:.56rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(244,241,236,.28);font-weight:700;}
+.why-rows{border-top:1px solid rgba(244,241,236,.07);}
+.why-row{padding:clamp(18px,2.5vw,28px) 0;border-bottom:1px solid rgba(244,241,236,.07);transition:padding-left .32s var(--ease);}
+.why-row:hover{padding-left:8px;}
+.why-rh{display:flex;justify-content:space-between;align-items:center;gap:12px;}
+.why-rt{font-family:'Cormorant Garamond',serif;font-size:clamp(18px,2.5vw,30px);font-weight:400;color:var(--bone);transition:color .28s;flex:1;}
+.why-row:hover .why-rt{color:var(--ember);}
+.why-rn{font-size:.54rem;letter-spacing:.12em;color:rgba(244,241,236,.2);font-weight:700;flex-shrink:0;}
+.why-rb{font-size:.8rem;font-weight:500;line-height:1.82;color:rgba(244,241,236,.38);max-width:44ch;margin-top:8px;}
+
+/* ── CTA BAND ── */
+.cta-band{padding:clamp(80px,12vw,140px) var(--px);background:var(--bone);text-align:center;position:relative;overflow:hidden;}
+.cta-band-bg{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-family:'Cormorant Garamond',serif;font-size:clamp(80px,18vw,240px);font-weight:300;color:transparent;-webkit-text-stroke:1px rgba(14,13,11,.04);white-space:nowrap;pointer-events:none;user-select:none;}
+.cta-band-inner{position:relative;z-index:1;}
+.cta-band-title{font-family:'Cormorant Garamond',serif;font-size:clamp(32px,6.5vw,88px);font-weight:300;line-height:.9;letter-spacing:-.025em;margin-top:18px;margin-bottom:18px;}
+.cta-band-title em{font-style:italic;color:var(--ember);}
+.cta-band-sub{font-size:.84rem;font-weight:500;line-height:1.85;color:var(--muted);max-width:46ch;margin:0 auto 36px;}
+.cta-btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;}
+
+/* ── SERVICES NAV STRIP ── */
+.srv-strip{padding:clamp(32px,4vw,48px) var(--px);background:var(--bone);border-top:1px solid rgba(14,13,11,.07);}
+.srv-strip-inner{display:flex;flex-wrap:wrap;gap:10px;align-items:center;}
+.srv-strip-label{font-size:.56rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--mid);margin-right:6px;}
+.srv-chip{display:inline-flex;font-size:.62rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;padding:.32rem 1rem;border-radius:100px;border:1px solid rgba(14,13,11,.14);color:var(--muted);transition:background .22s,border-color .22s,color .22s;}
+.srv-chip:hover{background:var(--off);color:var(--ink);}
+.srv-chip.current{background:var(--ink);border-color:var(--ink);color:var(--bone);}
+
+/* FOOTER */
+footer{background:var(--ink);padding:clamp(60px,8vw,80px) var(--px) clamp(28px,4vw,40px);}
+.ft-g{display:grid;grid-template-columns:1fr 1fr;gap:40px;margin-bottom:clamp(48px,7vw,64px);}
+@media(min-width:960px){.ft-g{grid-template-columns:2fr 1fr 1fr 1fr;}}
+.ft-logo{font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:400;color:var(--bone);display:block;margin-bottom:14px;}
+.ft-logo em{font-style:normal;color:var(--ember);}
+.ft-desc{font-size:.78rem;font-weight:500;line-height:1.78;color:rgba(244,241,236,.28);max-width:28ch;margin-bottom:22px;}
+.ft-socs{display:flex;gap:10px;}
+.ft-soc{width:34px;height:34px;border-radius:50%;border:1px solid rgba(244,241,236,.1);display:flex;align-items:center;justify-content:center;font-size:.6rem;font-weight:700;color:rgba(244,241,236,.3);transition:border-color .22s,color .22s;}
+.ft-soc:hover{border-color:var(--ember);color:var(--ember);}
+.ft-col h4{font-size:.56rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:rgba(244,241,236,.28);margin-bottom:18px;}
+.ft-col ul{list-style:none;display:flex;flex-direction:column;gap:9px;}
+.ft-col a{font-size:.76rem;font-weight:500;color:rgba(244,241,236,.38);transition:color .2s;}
+.ft-col a:hover{color:var(--bone);}
+.ft-bot{padding-top:22px;border-top:1px solid rgba(244,241,236,.07);display:flex;flex-direction:column;gap:6px;}
+@media(min-width:600px){.ft-bot{flex-direction:row;justify-content:space-between;align-items:center;}}
+.ft-copy,.ft-made{font-size:.68rem;font-weight:500;color:rgba(244,241,236,.18);}
+.ft-made em{font-style:normal;color:var(--ember);}
+
+
+.nav-drop{
+  top:calc(100% + 1px); /* reduced gap, relies on ::after for bridge */
+}
+/* Ensure dropdown is above everything */
+.nav-drop a{
+  pointer-events:auto;
+  cursor:pointer;
+}
+
+/* ── Hero spacing fix: always leave room for fixed nav ── */
+.pg-hero{padding-top:calc(var(--nav-h) + 24px);}
+#hero{padding-top:var(--nav-h);}
+.cs-hero{padding-top:var(--nav-h);}
+.post-layout{padding-top:0;}
+
+/* ── Fix TOC sidebar top offset in case-study ── */
+.post-toc{top:var(--nav-h) !important;height:calc(100vh - var(--nav-h)) !important;}
+
+/* ── "View" label: keep it but move it away from nav area ── */
+/* ── SERVICE PAGE MOBILE ── */
+@media(max-width:767px){
+  .pg-hero{min-height:80svh;padding:calc(60px + 16px) var(--px) 52px;}
+  .pg-h1{font-size:clamp(44px,11.5vw,80px);line-height:.88;}
+  .pg-hero-num{font-size:clamp(70px,20vw,130px);bottom:calc(52px + 10px);}
+  .pg-breadcrumb{font-size:.56rem;letter-spacing:.14em;margin-bottom:20px;}
+  .pg-hero-foot{flex-direction:column;align-items:flex-start;gap:16px;padding-top:20px;}
+  .pg-hero-desc{font-size:.9rem;line-height:1.75;max-width:100%;}
+  .pg-hero-tags{gap:5px;flex-wrap:wrap;}
+  .pg-htag{font-size:.54rem;padding:.26rem .72rem;min-height:30px;display:inline-flex;align-items:center;}
+  .intro-split{padding:var(--sy) var(--px);grid-template-columns:1fr !important;gap:28px !important;}
+  .intro-lead{font-size:clamp(20px,5.5vw,28px);}
+  .intro-body{font-size:.9rem;line-height:1.88;}
+  .intro-body p{margin-bottom:12px;}
+  .approach{padding:var(--sy) var(--px);}
+  .approach-hd{margin-bottom:32px;}
+  .approach-title{font-size:clamp(28px,8vw,46px);line-height:.92;}
+  .step{grid-template-columns:44px 1fr !important;gap:0 !important;padding:22px 0;}
+  .step:hover{padding-left:0 !important;}
+  .step-body{padding-left:10px;}
+  .step-n{font-size:clamp(1.6rem,5vw,2.4rem);}
+  .step-title{font-size:clamp(17px,4.5vw,24px);margin-bottom:8px;}
+  .step-desc{font-size:.88rem;line-height:1.8;color:rgba(244,241,236,.52)!important;max-width:100%;}
+  .step-tags{display:flex !important;flex-wrap:wrap;gap:5px;margin-top:10px;}
+  .step-tag{font-size:.5rem;padding:.18rem .6rem;}
+  .deliverables{padding:var(--sy) var(--px);}
+  .del-grid{gap:28px !important;}
+  .del-title{font-size:clamp(24px,7vw,40px);}
+  .del-sub{font-size:.9rem;line-height:1.8;}
+  .del-item{padding:16px 0;}
+  .del-item:hover{padding-left:0 !important;}
+  .del-name{font-size:clamp(16px,4vw,22px);}
+  .del-icon{width:36px;height:36px;}
+  .cases{padding:var(--sy) var(--px);}
+  .cases-hd{flex-direction:column;align-items:flex-start;gap:10px;margin-bottom:28px;padding-bottom:20px;}
+  .cases-title{font-size:clamp(28px,8vw,46px);}
+  .cases-grid{grid-template-columns:1fr !important;gap:14px;}
+  .cs-card.wide{grid-column:span 1;}
+  .cs-name{font-size:clamp(20px,5.5vw,28px) !important;}
+  .cs-link{color:rgba(244,241,236,.75) !important;min-height:44px;display:inline-flex;align-items:center;}
+  .why-panel{padding:var(--sy) var(--px);}
+  .why-grid{grid-template-columns:1fr !important;gap:36px !important;}
+  .why-sticky{position:static !important;}
+  .why-title{font-size:clamp(28px,7.5vw,46px);margin-bottom:14px;}
+  .why-sub{font-size:.9rem;line-height:1.78;max-width:100%;color:rgba(244,241,236,.52)!important;}
+  .why-nums{gap:14px;margin-top:22px;}
+  .why-num-n{font-size:clamp(1.6rem,5vw,2.4rem);}
+  .why-num-l{font-size:.56rem;}
+  .why-row{padding:18px 0;}
+  .why-row:hover{padding-left:0 !important;}
+  .why-rt{font-size:clamp(17px,4.5vw,24px);}
+  .why-rb{font-size:.88rem;line-height:1.78;max-width:100%;color:rgba(244,241,236,.52)!important;}
+  .cta-band{padding:64px var(--px);}
+  .cta-band-title{font-size:clamp(28px,7.5vw,52px);line-height:.92;margin-bottom:14px;}
+  .cta-band-sub{font-size:.9rem;max-width:100%;margin-bottom:24px;}
+  .cta-btns{flex-direction:column;align-items:center;gap:10px;}
+  .cta-btns .btn-p,.cta-btns .btn-o,.cta-btns .btn-ember{width:100%;max-width:320px;justify-content:center;min-height:52px;}
+  .srv-strip{padding:18px var(--px);}
+  .srv-strip-inner{gap:7px;flex-wrap:wrap;}
+  .srv-chip{font-size:.58rem;padding:.3rem .85rem;min-height:36px;}
+}
+@media(max-width:479px){
+  .pg-h1{font-size:clamp(38px,11vw,64px);}
+  .cases-grid{grid-template-columns:1fr;}
+  .pg-hero{padding:calc(60px + 12px) 18px 44px;}
+}
+@keyframes spin{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+nav.dnav:not(.stuck){background:transparent;}
+nav.dnav.stuck{background:rgba(14,13,11,.93);backdrop-filter:blur(20px);border-bottom:1px solid rgba(244,241,236,.06);}
+nav.dnav .logo{color:var(--bone);}
+nav.dnav .nav-link{color:rgba(244,241,236,.5);}
+nav.dnav .nav-link:hover{color:var(--bone);}
+nav.dnav .nav-cta{border-color:rgba(244,241,236,.2);color:var(--bone);}
+nav.dnav .ham span{background:var(--bone);}
+.clp{overflow:hidden;display:block;}.ci{display:inline-block;transform:translateY(105%);opacity:0;transition:transform .85s cubic-bezier(0.22,1,0.36,1),opacity .6s ease;}.clp.vis .ci{transform:translateY(0);opacity:1;}
+/* lg-mobile-nav-overrides */
+@media(max-width:767px){
+  :root{--nav-h:72px;}
+  .nav-shell{top:10px !important;width:calc(100% - 24px);left:50%;transform:translateX(-50%);overflow:visible;}
+  .nav-shell.scrolled{top:6px !important;}
+  nav{height:50px;padding:0 6px 0 16px;overflow:visible;}
+  .glass-filter,.glass-overlay,.glass-specular{border-radius:100px;}
+  .logo-svg{height:22px;}
+  .nav-cta{display:none !important;}
+  .nav-links{display:none !important;}
+  .ham{width:40px;height:40px;min-height:unset !important;flex-shrink:0;}
+  .ham span{width:17px;height:1.5px;}
+  section,footer{overflow-x:hidden;}
+  .pg-hero{padding-top:calc(var(--nav-h) + 24px);}
+}
+@media(max-width:480px){
+  :root{--nav-h:68px;}
+  .nav-shell{width:calc(100% - 16px);top:8px !important;}
+  nav{height:46px;padding:0 5px 0 14px;}
+  .logo-svg{height:20px;}
+  .ham{width:36px;height:36px;}
+  .ham span{width:16px;}
+}
+
+</style>
+  <link rel="stylesheet" href="assets/cursor.css">
+<link rel="stylesheet" href="assets/mobile.css">
+</head>
+<body>
+<svg style="position:absolute;width:0;height:0;overflow:hidden" aria-hidden="true"><defs><filter id="lg-refract" x="-8%" y="-8%" width="116%" height="116%" color-interpolation-filters="sRGB"><feTurbulence type="fractalNoise" baseFrequency="0.010 0.007" numOctaves="2" seed="47" result="noise"/><feGaussianBlur in="noise" stdDeviation="2.2" result="softNoise"/><feDisplacementMap in="SourceGraphic" in2="softNoise" scale="60" xChannelSelector="R" yChannelSelector="G" result="distorted"/><feComposite in="distorted" in2="SourceGraphic" operator="over"/></filter></defs></svg>
+
+<div class="noise" aria-hidden="true"></div>
+<div id="prog" aria-hidden="true"></div>
+<!-- NAV -->
+<div class="nav-shell" id="navShell">
+<nav id="nav">
+  <div class="glass-filter"></div>
+  <div class="glass-overlay"></div>
+  <div class="glass-specular"></div>
+  <div class="glass-content">
+    <a href="index.html" class="logo" aria-label="Dcasel Studio"><svg class="logo-svg" viewBox="200 54 1120 360" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><g class="logo-accent"><path d="M428.57,190.25a143.72,143.72,0,0,0-39.87-60.57,94.07,94.07,0,0,0,4.84-26.42,114,114,0,0,0-8.78-48.45L349.18,69.66c4.56,10.93,7,24.67,5.38,37.42a122.65,122.65,0,0,0-77.94-8.79c-16.48,3.61-28.59,10.23-37,20.25a43.51,43.51,0,0,0-9.73,34.58,45.24,45.24,0,0,0,20.42,31.26c8.58,5.49,19,8.28,32,8.53,15.7.3,32.34-2.86,49.44-9.39C346.23,178,358,171.1,367.17,162.71a106,106,0,0,1,24.89,39.93c6,17.81,7.33,37.24,3.61,54.72-7,33-40.42,44.79-69.81,39.41-20.51-3.75-38.46-15.54-54.75-31.56,5.61.49,11,.69,16.19.69a199,199,0,0,0,40.29-4l-8.4-37.62A169.25,169.25,0,0,1,276.52,227c-15.08-1.06-27.69-4.28-37.75-9.64a45.31,45.31,0,0,1-16.44-15.07l-.05-.07-32.14,21.29,0,0a25.2,25.2,0,0,1,3.18,6.81,205.61,205.61,0,0,1,5.36,23c3.19,18.64,4.67,45-6.38,64.69l33.62,18.87c7.5-13.35,11.95-29.07,13.24-46.72,0-.74.1-1.48.14-2.22.61.63,1.21,1.27,1.82,1.89,24.74,25.13,50.18,39.8,77.77,44.85a115.09,115.09,0,0,0,20.81,1.91,103.87,103.87,0,0,0,49.82-12.32,86.65,86.65,0,0,0,43.84-58.91C438.52,241.21,436.81,214.53,428.57,190.25ZM317.94,147.5c-12.46,4.76-24.22,7.07-34.95,6.86-5.53-.1-9.54-.93-11.93-2.46a6.7,6.7,0,0,1-3.07-4.58,4.73,4.73,0,0,1,1.1-3.95c2.68-3.18,8.13-5.74,15.79-7.42A82.38,82.38,0,0,1,302.54,134a83.63,83.63,0,0,1,30.87,6A89.65,89.65,0,0,1,317.94,147.5Z"/><path d="M454.48,54.81c28.83.87,45.56,15.28,45.56,55.07v30.57H457.36V97.2h17.88V96c0-13.55-6.34-19.6-20.76-20.18Z"/></g><g class="logo-main"><path d="M493.52,252.24c0-44.37,34.54-81.45,103.31-81.45,69.72,0,95.7,32.64,95.7,66.55H655.45c-.31-17.74-15.84-34.86-58-34.86-43.09,0-63.37,21.87-63.37,49.76,0,26.3,16.47,49.75,61.79,49.75,44,0,59.89-16.48,60.21-34.23h37.08c0,32.64-25.67,65.92-98.87,65.92C521.73,333.68,493.52,291.85,493.52,252.24Z"/><path d="M682.08,284.24c0-30.42,25-43.1,64.33-43.1h94.12V238c0-25.67-17.43-38.35-60.53-38.35-40.88,0-54.19,11.41-54.19,24.72,0,1,0,1.9.32,13H687.47c-.32-12-.32-14.26-.32-14.89,0-30.42,28.52-51.66,93.8-51.66,66.55,0,100.14,27.26,100.14,71v88.73H840.53c1-10.78,1.58-26.94,1.9-37.71h-.32c-7,25-29.47,40.56-82.07,40.56C703,333.36,682.08,309,682.08,284.24Zm158.45-18.06v-.95H755.92c-23.77,0-36.76,2.53-36.76,17.43,0,10.45,8.87,22.18,48.8,22.18C818,304.84,840.53,284.56,840.53,266.18Z"/><path d="M878.24,278.54h38.35c.32,13,6.65,26.3,55.46,26.3,48.16,0,58.94-9.19,58.94-21.55,0-6.34-2.54-11.09-12.68-13.31-11.09-2.22-34.86-2.85-55.14-3.48-32.32-.95-56.09-4.76-68.13-11.41-11.72-6.34-16.8-18.38-16.8-31.37,0-31.69,33.91-52.93,93.81-52.93,74.47,0,90.31,26.62,90.31,56.09H1024c-.32-15.52-7.93-27.25-50.71-27.25-37.07,0-54.5,7.29-54.5,22.18,0,6.34,3.17,10.78,13.31,13,11.09,2.85,31.37,2.85,56.09,4.12,27.88,1.26,48.48,3.17,62.11,8.87,14.58,6.65,21.23,19.33,21.23,34.22,0,24.09-18.06,51.66-99.5,51.66C890.92,333.68,878.24,302,878.24,278.54Z"/><path d="M1269.61,261.74H1108c2.85,23.77,18.06,43.1,65.91,43.1,41.51,0,56.09-12.36,58.63-25.35h37.07c-1.9,27.25-28.83,54.19-95.7,54.19-82.71,0-106.79-41.2-106.79-80.18,0-50.07,38.34-82.71,104.26-82.71,66.86,0,98.23,29.79,98.23,78.28Zm-37.07-25.35c0-20.91-16.8-36.76-59.58-36.76-39.29,0-58.31,13.31-63.69,37.71h123.27Z"/><path d="M1269.3,108.68h40.56V330.51H1269.3Z"/></g></svg></a>
+    <div class="nav-links">
+      <div class="nav-item">
+        <a href="index.html#services" class="nav-link">Services<svg class="nav-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6" stroke-linecap="round"/></svg></a>
+        <div class="nav-drop">
+          <a href="brand-identity.html">Brand Identity</a>
+          <a href="web-design.html">Web Design</a>
+          <a href="product-design.html">Product Design</a>
+          <a href="motion-design.html">Motion Design</a>
+          <a href="creative-direction.html">Creative Direction</a>
+        </div>
+      </div>
+      <a href="work.html" class="nav-link">Work</a>
+      <div class="nav-item">
+        <a href="about.html" class="nav-link">Studio<svg class="nav-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6" stroke-linecap="round"/></svg></a>
+        <div class="nav-drop">
+          <a href="about.html">About</a>
+          <div class="drop-div"></div>
+          <a href="process.html">Process</a>
+          <div class="drop-div"></div>
+          <a href="why-dcasel.html">Why Dcasel</a>
+        </div>
+      </div>
+    </div>
+    <a href="index.html#cta" class="nav-cta">Start a Project <span class="nav-cta-arrow"><svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
+    <button class="ham" id="hamBtn" aria-label="Toggle menu" aria-expanded="false"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+</div>
+<div class="mob" id="mobMenu" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Navigation menu">
+  <div class="mob-header">
+    <a href="index.html" class="mob-logo"><svg class="logo-svg" viewBox="200 54 1120 360" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><g class="logo-accent"><path d="M428.57,190.25a143.72,143.72,0,0,0-39.87-60.57,94.07,94.07,0,0,0,4.84-26.42,114,114,0,0,0-8.78-48.45L349.18,69.66c4.56,10.93,7,24.67,5.38,37.42a122.65,122.65,0,0,0-77.94-8.79c-16.48,3.61-28.59,10.23-37,20.25a43.51,43.51,0,0,0-9.73,34.58,45.24,45.24,0,0,0,20.42,31.26c8.58,5.49,19,8.28,32,8.53,15.7.3,32.34-2.86,49.44-9.39C346.23,178,358,171.1,367.17,162.71a106,106,0,0,1,24.89,39.93c6,17.81,7.33,37.24,3.61,54.72-7,33-40.42,44.79-69.81,39.41-20.51-3.75-38.46-15.54-54.75-31.56,5.61.49,11,.69,16.19.69a199,199,0,0,0,40.29-4l-8.4-37.62A169.25,169.25,0,0,1,276.52,227c-15.08-1.06-27.69-4.28-37.75-9.64a45.31,45.31,0,0,1-16.44-15.07l-.05-.07-32.14,21.29,0,0a25.2,25.2,0,0,1,3.18,6.81,205.61,205.61,0,0,1,5.36,23c3.19,18.64,4.67,45-6.38,64.69l33.62,18.87c7.5-13.35,11.95-29.07,13.24-46.72,0-.74.1-1.48.14-2.22.61.63,1.21,1.27,1.82,1.89,24.74,25.13,50.18,39.8,77.77,44.85a115.09,115.09,0,0,0,20.81,1.91,103.87,103.87,0,0,0,49.82-12.32,86.65,86.65,0,0,0,43.84-58.91C438.52,241.21,436.81,214.53,428.57,190.25ZM317.94,147.5c-12.46,4.76-24.22,7.07-34.95,6.86-5.53-.1-9.54-.93-11.93-2.46a6.7,6.7,0,0,1-3.07-4.58,4.73,4.73,0,0,1,1.1-3.95c2.68-3.18,8.13-5.74,15.79-7.42A82.38,82.38,0,0,1,302.54,134a83.63,83.63,0,0,1,30.87,6A89.65,89.65,0,0,1,317.94,147.5Z"/><path d="M454.48,54.81c28.83.87,45.56,15.28,45.56,55.07v30.57H457.36V97.2h17.88V96c0-13.55-6.34-19.6-20.76-20.18Z"/></g><g class="logo-main"><path d="M493.52,252.24c0-44.37,34.54-81.45,103.31-81.45,69.72,0,95.7,32.64,95.7,66.55H655.45c-.31-17.74-15.84-34.86-58-34.86-43.09,0-63.37,21.87-63.37,49.76,0,26.3,16.47,49.75,61.79,49.75,44,0,59.89-16.48,60.21-34.23h37.08c0,32.64-25.67,65.92-98.87,65.92C521.73,333.68,493.52,291.85,493.52,252.24Z"/><path d="M682.08,284.24c0-30.42,25-43.1,64.33-43.1h94.12V238c0-25.67-17.43-38.35-60.53-38.35-40.88,0-54.19,11.41-54.19,24.72,0,1,0,1.9.32,13H687.47c-.32-12-.32-14.26-.32-14.89,0-30.42,28.52-51.66,93.8-51.66,66.55,0,100.14,27.26,100.14,71v88.73H840.53c1-10.78,1.58-26.94,1.9-37.71h-.32c-7,25-29.47,40.56-82.07,40.56C703,333.36,682.08,309,682.08,284.24Zm158.45-18.06v-.95H755.92c-23.77,0-36.76,2.53-36.76,17.43,0,10.45,8.87,22.18,48.8,22.18C818,304.84,840.53,284.56,840.53,266.18Z"/><path d="M878.24,278.54h38.35c.32,13,6.65,26.3,55.46,26.3,48.16,0,58.94-9.19,58.94-21.55,0-6.34-2.54-11.09-12.68-13.31-11.09-2.22-34.86-2.85-55.14-3.48-32.32-.95-56.09-4.76-68.13-11.41-11.72-6.34-16.8-18.38-16.8-31.37,0-31.69,33.91-52.93,93.81-52.93,74.47,0,90.31,26.62,90.31,56.09H1024c-.32-15.52-7.93-27.25-50.71-27.25-37.07,0-54.5,7.29-54.5,22.18,0,6.34,3.17,10.78,13.31,13,11.09,2.85,31.37,2.85,56.09,4.12,27.88,1.26,48.48,3.17,62.11,8.87,14.58,6.65,21.23,19.33,21.23,34.22,0,24.09-18.06,51.66-99.5,51.66C890.92,333.68,878.24,302,878.24,278.54Z"/><path d="M1269.61,261.74H1108c2.85,23.77,18.06,43.1,65.91,43.1,41.51,0,56.09-12.36,58.63-25.35h37.07c-1.9,27.25-28.83,54.19-95.7,54.19-82.71,0-106.79-41.2-106.79-80.18,0-50.07,38.34-82.71,104.26-82.71,66.86,0,98.23,29.79,98.23,78.28Zm-37.07-25.35c0-20.91-16.8-36.76-59.58-36.76-39.29,0-58.31,13.31-63.69,37.71h123.27Z"/><path d="M1269.3,108.68h40.56V330.51H1269.3Z"/></g></svg></a>
+    <button class="mob-close" id="mobClose" aria-label="Close menu"><svg viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12"/></svg></button>
+  </div>
+  <div class="mob-body">
+    <nav class="mob-links">
+      <a href="index.html#services" class="mm">Services</a>
+      <a href="work.html" class="mm">Work</a>
+      <a href="about.html" class="mm">Studio</a>
+      <a href="process.html" class="mm">Process</a>
+      <a href="why-dcasel.html" class="mm">Why Dcasel</a>
+    </nav>
+    <a href="index.html#cta" class="mob-btn mm">Start a Project &#x2192;</a>
+  </div>
+  <div class="mob-foot">
+    <span class="mob-foot-txt">Est. 2016 &middot; Bengaluru, India</span>
+  </div>
+</div>
+
+
+<!-- HERO -->
+<section class="pg-hero">
+  <div class="pg-hero-grain" aria-hidden="true"></div>
+  <div class="pg-hero-num" aria-hidden="true">01</div>
+  <div class="pg-breadcrumb" id="pgBc">
+    <a href="index.html">Home</a>
+    <span>→</span>
+    <a href="index.html#services">Services</a>
+    <span>→</span>
+    <span>Brand Identity</span>
+  </div>
+  <h1 class="pg-h1">
+    <span class="line d1" id="hl1">Brand</span>
+    <span class="line it d2" id="hl2">Identity</span>
+    <span class="line em d3" id="hl3">Systems.</span>
+  </h1>
+  <div class="pg-hero-foot" id="pgFoot">
+    <p class="pg-hero-desc">We build brand identities that go beyond a logo — a complete, living system that expresses who you are, anchors every touchpoint, and scales with your ambition.</p>
+    <div class="pg-hero-tags">
+      <span class="pg-htag">Logos</span>
+      <span class="pg-htag">Systems</span>
+      <span class="pg-htag">Guidelines</span>
+      <span class="pg-htag">Typography</span>
+      <span class="pg-htag">Colour</span>
+      <span class="pg-htag">Collateral</span>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICE NAV STRIP -->
+<div class="srv-strip">
+  <div class="srv-strip-inner">
+    <span class="srv-strip-label">Services</span>
+    <a href="brand-identity.html" class="srv-chip current">Brand Identity</a>
+    <a href="web-design.html" class="srv-chip">Web Design</a>
+    <a href="product-design.html" class="srv-chip">Product Design</a>
+    <a href="motion-design.html" class="srv-chip">Motion Design</a>
+    <a href="creative-direction.html" class="srv-chip">Creative Direction</a>
+  </div>
+</div>
+
+<!-- INTRO -->
+<section class="intro-split">
+  <div class="intro-lead rev">
+    A brand identity isn't just what people see — it's what they feel, remember, and trust. We craft identities that are as strategic as they are beautiful.
+  </div>
+  <div class="intro-body rev d2">
+    <p>Every strong brand starts with a question: what do you actually stand for? We spend time deeply understanding your business, your audience, and the competitive landscape before we pick up a pencil.</p>
+    <p>The result is a brand identity that isn't just visually distinctive — it's systemically coherent. From your primary mark to the typeface hierarchy, from the colour palette to the tone of voice, every element is crafted to work together and scale across every medium.</p>
+    <p>We've built brand systems for Series A startups, established enterprises, and D2C brands across 12+ industries. The process is rigorous. The outcomes are remarkable.</p>
+  </div>
+</section>
+
+<!-- OUR APPROACH -->
+<section class="approach">
+  <div class="approach-hd">
+    <div class="sec-tag rev" style="color:rgba(244,241,236,.35)">Our Approach</div>
+    <h2 class="approach-title rev d1">How we build<br><em>brands</em></h2>
+  </div>
+  <div class="steps">
+    <div class="step rev">
+      <div class="step-n">01</div>
+      <div class="step-body">
+        <h3 class="step-title">Brand Discovery</h3>
+        <p class="step-desc">Stakeholder interviews, competitor audit, and audience research. We map the entire landscape before making a single creative decision.</p>
+      </div>
+      <div class="step-tags"><span class="step-tag">Stakeholder Interviews</span><span class="step-tag">Competitor Audit</span><span class="step-tag">Audience Research</span></div>
+    </div>
+    <div class="step rev d1">
+      <div class="step-n">02</div>
+      <div class="step-body">
+        <h3 class="step-title">Strategic Positioning</h3>
+        <p class="step-desc">Define your brand's unique territory, personality, and voice. We write the creative brief that will guide every design decision.</p>
+      </div>
+      <div class="step-tags"><span class="step-tag">Brand Positioning</span><span class="step-tag">Personality Framework</span><span class="step-tag">Tone of Voice</span></div>
+    </div>
+    <div class="step rev d2">
+      <div class="step-n">03</div>
+      <div class="step-body">
+        <h3 class="step-title">Identity Design</h3>
+        <p class="step-desc">Logo design, typography, colour, and visual language. We explore multiple directions, refine obsessively, and present only work we believe in.</p>
+      </div>
+      <div class="step-tags"><span class="step-tag">Logo Design</span><span class="step-tag">Typography</span><span class="step-tag">Colour System</span><span class="step-tag">Iconography</span></div>
+    </div>
+    <div class="step rev d3">
+      <div class="step-n">04</div>
+      <div class="step-body">
+        <h3 class="step-title">System Build & Handoff</h3>
+        <p class="step-desc">A complete brand guidelines document (100+ pages), all assets export-ready, and a handoff your team can actually use.</p>
+      </div>
+      <div class="step-tags"><span class="step-tag">Brand Guidelines</span><span class="step-tag">Asset Library</span><span class="step-tag">Figma Handoff</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- DELIVERABLES -->
+<section class="deliverables">
+  <div class="del-grid">
+    <div class="del-intro rev">
+      <div class="sec-tag">What you get</div>
+      <h2 class="del-title">Every asset<br>your brand<br><em>needs.</em></h2>
+      <p class="del-sub">We don't just hand over files. We hand over a complete brand system your team can maintain, scale, and build on for years.</p>
+    </div>
+    <div class="del-list rev d2">
+      <div class="del-item">
+        <span class="del-name">Primary Logo & Mark System</span>
+        <div class="del-icon"><svg viewBox="0 0 24 24" stroke-width="1.5"><path d="M7 17L17 7M7 7h10v10" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      </div>
+      <div class="del-item">
+        <span class="del-name">Colour Palette & Swatches</span>
+        <div class="del-icon"><svg viewBox="0 0 24 24" stroke-width="1.5"><path d="M7 17L17 7M7 7h10v10" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      </div>
+      <div class="del-item">
+        <span class="del-name">Typography System</span>
+        <div class="del-icon"><svg viewBox="0 0 24 24" stroke-width="1.5"><path d="M7 17L17 7M7 7h10v10" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      </div>
+      <div class="del-item">
+        <span class="del-name">Brand Guidelines (100+ pages)</span>
+        <div class="del-icon"><svg viewBox="0 0 24 24" stroke-width="1.5"><path d="M7 17L17 7M7 7h10v10" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      </div>
+      <div class="del-item">
+        <span class="del-name">Stationery & Collateral</span>
+        <div class="del-icon"><svg viewBox="0 0 24 24" stroke-width="1.5"><path d="M7 17L17 7M7 7h10v10" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      </div>
+      <div class="del-item">
+        <span class="del-name">Social Media Templates</span>
+        <div class="del-icon"><svg viewBox="0 0 24 24" stroke-width="1.5"><path d="M7 17L17 7M7 7h10v10" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      </div>
+      <div class="del-item">
+        <span class="del-name">Figma Brand Library</span>
+        <div class="del-icon"><svg viewBox="0 0 24 24" stroke-width="1.5"><path d="M7 17L17 7M7 7h10v10" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CASE STUDIES -->
+<section class="cases">
+  <div class="cases-hd">
+    <div>
+      <div class="sec-tag rev" style="color:rgba(244,241,236,.35)">Selected Work</div>
+      <h2 class="cases-title rev d1">Brand Identity<br>Case Studies</h2>
+    </div>
+  </div>
+  <div class="cases-grid">
+    <div class="cs-card wide rev">
+      <div class="cs-img"><img src="https://images.unsplash.com/photo-1609921212029-bb5a28e60960?q=80&w=1400&auto=format&fit=crop" alt="Vertex Technologies" loading="lazy"></div>
+      <div class="cs-info">
+        <span class="cs-cat">Brand Identity · 2024</span>
+        <h3 class="cs-name">Vertex Technologies</h3>
+        <div class="cs-tags"><span class="cs-tag-sm">Logo</span><span class="cs-tag-sm">System</span><span class="cs-tag-sm">Guidelines</span></div>
+        <span class="cs-link">View Case Study <svg viewBox="0 0 24 24" stroke-width="1.5"><path d="M7 17L17 7M7 7h10v10" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      </div>
+    </div>
+    <div class="cs-card rev d1">
+      <div class="cs-img"><img src="https://images.unsplash.com/photo-1559136555-9303baea8ebd?q=80&w=900&auto=format&fit=crop" alt="Bloom Wellness" loading="lazy"></div>
+      <div class="cs-info">
+        <span class="cs-cat">Brand + Web · 2023</span>
+        <h3 class="cs-name">Bloom Wellness</h3>
+        <div class="cs-tags"><span class="cs-tag-sm">Rebrand</span><span class="cs-tag-sm">Collateral</span></div>
+        <span class="cs-link">View Case Study <svg viewBox="0 0 24 24" stroke-width="1.5"><path d="M7 17L17 7M7 7h10v10" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      </div>
+    </div>
+    <div class="cs-card rev d2">
+      <div class="cs-img"><img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=900&auto=format&fit=crop" alt="Zenith Capital" loading="lazy"></div>
+      <div class="cs-info">
+        <span class="cs-cat">Identity · 2022</span>
+        <h3 class="cs-name">Zenith Capital</h3>
+        <div class="cs-tags"><span class="cs-tag-sm">Fintech</span><span class="cs-tag-sm">B2B</span></div>
+        <span class="cs-link">View Case Study <svg viewBox="0 0 24 24" stroke-width="1.5"><path d="M7 17L17 7M7 7h10v10" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY DCASEL FOR BRAND IDENTITY -->
+<section class="why-panel">
+  <div class="why-grid">
+    <div class="why-sticky">
+      <div class="sec-tag rev" style="color:rgba(244,241,236,.35)">Why us</div>
+      <h2 class="why-title rev d1">Why Dcasel<br>for Brand<br>Identity?</h2>
+      <p class="why-sub rev d2">We've built brands for 130+ companies. We know what makes an identity last — and what makes it forgettable.</p>
+      <div class="why-nums rev d3">
+        <div class="why-num"><span class="why-num-n">130+</span><span class="why-num-l">Brands Built</span></div>
+        <div class="why-num"><span class="why-num-n">9yr</span><span class="why-num-l">Experience</span></div>
+      </div>
+    </div>
+    <div class="why-rows">
+      <div class="why-row rev"><div class="why-rh"><h3 class="why-rt">Strategy Before Aesthetics</h3><span class="why-rn">01</span></div><p class="why-rb">Every creative decision is anchored to a business objective. We don't design until we understand the full strategic picture.</p></div>
+      <div class="why-row rev d1"><div class="why-rh"><h3 class="why-rt">Built to Scale</h3><span class="why-rn">02</span></div><p class="why-rb">We design systems, not just logos. Your brand will work at 16px on a favicon and 16 feet on a billboard.</p></div>
+      <div class="why-row rev d2"><div class="why-rh"><h3 class="why-rt">Senior Hands, Always</h3><span class="why-rn">03</span></div><p class="why-rb">Your project is handled by senior designers — not juniors or freelancers. The quality you see in our work is the quality you get.</p></div>
+      <div class="why-row rev d3"><div class="why-rh"><h3 class="why-rt">Genuinely Collaborative</h3><span class="why-rn">04</span></div><p class="why-rb">We work with you, not at you. Regular check-ins, transparent timelines, and honest conversations throughout.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-band">
+  <div class="cta-band-bg" aria-hidden="true">Brand</div>
+  <div class="cta-band-inner">
+    <div class="sec-tag rev" style="justify-content:center">Ready to begin?</div>
+    <h2 class="cta-band-title rev d1">Let's build a brand<br>worth <em>remembering.</em></h2>
+    <p class="cta-band-sub rev d2">Tell us about your project. First consultation is always free.</p>
+    <div class="cta-btns rev d3">
+      <a href="index.html#cta" class="btn-p">Start a Brand Project <svg viewBox="0 0 24 24" stroke-width="1.5"><path d="M5 12h14M12 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      <a href="index.html#work" class="btn-o">See our work first</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="ft-g">
+    <div>
+      <a href="index.html" class="ft-logo" aria-label="Dcasel Studio"><svg class="logo-svg" viewBox="200 54 1120 360" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><g class="logo-accent"><path d="M428.57,190.25a143.72,143.72,0,0,0-39.87-60.57,94.07,94.07,0,0,0,4.84-26.42,114,114,0,0,0-8.78-48.45L349.18,69.66c4.56,10.93,7,24.67,5.38,37.42a122.65,122.65,0,0,0-77.94-8.79c-16.48,3.61-28.59,10.23-37,20.25a43.51,43.51,0,0,0-9.73,34.58,45.24,45.24,0,0,0,20.42,31.26c8.58,5.49,19,8.28,32,8.53,15.7.3,32.34-2.86,49.44-9.39C346.23,178,358,171.1,367.17,162.71a106,106,0,0,1,24.89,39.93c6,17.81,7.33,37.24,3.61,54.72-7,33-40.42,44.79-69.81,39.41-20.51-3.75-38.46-15.54-54.75-31.56,5.61.49,11,.69,16.19.69a199,199,0,0,0,40.29-4l-8.4-37.62A169.25,169.25,0,0,1,276.52,227c-15.08-1.06-27.69-4.28-37.75-9.64a45.31,45.31,0,0,1-16.44-15.07l-.05-.07-32.14,21.29,0,0a25.2,25.2,0,0,1,3.18,6.81,205.61,205.61,0,0,1,5.36,23c3.19,18.64,4.67,45-6.38,64.69l33.62,18.87c7.5-13.35,11.95-29.07,13.24-46.72,0-.74.1-1.48.14-2.22.61.63,1.21,1.27,1.82,1.89,24.74,25.13,50.18,39.8,77.77,44.85a115.09,115.09,0,0,0,20.81,1.91,103.87,103.87,0,0,0,49.82-12.32,86.65,86.65,0,0,0,43.84-58.91C438.52,241.21,436.81,214.53,428.57,190.25ZM317.94,147.5c-12.46,4.76-24.22,7.07-34.95,6.86-5.53-.1-9.54-.93-11.93-2.46a6.7,6.7,0,0,1-3.07-4.58,4.73,4.73,0,0,1,1.1-3.95c2.68-3.18,8.13-5.74,15.79-7.42A82.38,82.38,0,0,1,302.54,134a83.63,83.63,0,0,1,30.87,6A89.65,89.65,0,0,1,317.94,147.5Z"/><path d="M454.48,54.81c28.83.87,45.56,15.28,45.56,55.07v30.57H457.36V97.2h17.88V96c0-13.55-6.34-19.6-20.76-20.18Z"/></g><g class="logo-main"><path d="M493.52,252.24c0-44.37,34.54-81.45,103.31-81.45,69.72,0,95.7,32.64,95.7,66.55H655.45c-.31-17.74-15.84-34.86-58-34.86-43.09,0-63.37,21.87-63.37,49.76,0,26.3,16.47,49.75,61.79,49.75,44,0,59.89-16.48,60.21-34.23h37.08c0,32.64-25.67,65.92-98.87,65.92C521.73,333.68,493.52,291.85,493.52,252.24Z"/><path d="M682.08,284.24c0-30.42,25-43.1,64.33-43.1h94.12V238c0-25.67-17.43-38.35-60.53-38.35-40.88,0-54.19,11.41-54.19,24.72,0,1,0,1.9.32,13H687.47c-.32-12-.32-14.26-.32-14.89,0-30.42,28.52-51.66,93.8-51.66,66.55,0,100.14,27.26,100.14,71v88.73H840.53c1-10.78,1.58-26.94,1.9-37.71h-.32c-7,25-29.47,40.56-82.07,40.56C703,333.36,682.08,309,682.08,284.24Zm158.45-18.06v-.95H755.92c-23.77,0-36.76,2.53-36.76,17.43,0,10.45,8.87,22.18,48.8,22.18C818,304.84,840.53,284.56,840.53,266.18Z"/><path d="M878.24,278.54h38.35c.32,13,6.65,26.3,55.46,26.3,48.16,0,58.94-9.19,58.94-21.55,0-6.34-2.54-11.09-12.68-13.31-11.09-2.22-34.86-2.85-55.14-3.48-32.32-.95-56.09-4.76-68.13-11.41-11.72-6.34-16.8-18.38-16.8-31.37,0-31.69,33.91-52.93,93.81-52.93,74.47,0,90.31,26.62,90.31,56.09H1024c-.32-15.52-7.93-27.25-50.71-27.25-37.07,0-54.5,7.29-54.5,22.18,0,6.34,3.17,10.78,13.31,13,11.09,2.85,31.37,2.85,56.09,4.12,27.88,1.26,48.48,3.17,62.11,8.87,14.58,6.65,21.23,19.33,21.23,34.22,0,24.09-18.06,51.66-99.5,51.66C890.92,333.68,878.24,302,878.24,278.54Z"/><path d="M1269.61,261.74H1108c2.85,23.77,18.06,43.1,65.91,43.1,41.51,0,56.09-12.36,58.63-25.35h37.07c-1.9,27.25-28.83,54.19-95.7,54.19-82.71,0-106.79-41.2-106.79-80.18,0-50.07,38.34-82.71,104.26-82.71,66.86,0,98.23,29.79,98.23,78.28Zm-37.07-25.35c0-20.91-16.8-36.76-59.58-36.76-39.29,0-58.31,13.31-63.69,37.71h123.27Z"/><path d="M1269.3,108.68h40.56V330.51H1269.3Z"/></g></svg></a>
+      <p class="ft-desc">A boutique design studio crafting remarkable brand identities and digital experiences since 2016.</p>
+      <div class="ft-socs">
+        <a href="#" class="ft-soc" aria-label="LinkedIn">Li</a>
+        <a href="#" class="ft-soc" aria-label="Instagram">Ig</a>
+        <a href="#" class="ft-soc" aria-label="Dribbble">Dr</a>
+        <a href="#" class="ft-soc" aria-label="Behance">Bé</a>
+      </div>
+    </div>
+    <div class="ft-col"><h4>Services</h4><ul>
+      <li><a href="brand-identity.html">Brand Identity</a></li>
+      <li><a href="web-design.html">Web Design</a></li>
+      <li><a href="product-design.html">Product Design</a></li>
+      <li><a href="motion-design.html">Motion Design</a></li>
+      <li><a href="creative-direction.html">Creative Direction</a></li>
+    </ul></div>
+    <div class="ft-col"><h4>Studio</h4><ul>
+      <li><a href="about.html">About</a></li>
+      <li><a href="process.html">Process</a></li>
+      <li><a href="why-dcasel.html">Why Dcasel</a></li>
+      <li><a href="index.html#work">Case Studies</a></li>
+    </ul></div>
+    <div class="ft-col"><h4>Contact</h4><ul>
+      <li><a href="mailto:hello@dcasel.com">hello@dcasel.com</a></li>
+      <li><a href="#">Bengaluru, India</a></li>
+      <li><a href="index.html#cta">Start a Project</a></li>
+    </ul></div>
+  </div>
+  <div class="ft-bot">
+    <span class="ft-copy">© 2025 Dcasel Creative Pvt. Ltd.</span>
+    <span class="ft-made">Crafted with care in <em>Bengaluru</em></span>
+  </div>
+</footer>
+
+<script src="assets/cursor.js"></script>
+<script src="assets/subpage-logic.js" defer></script>
+<script>
+/* ── Nav shell scroll ── */
+(function(){
+  var shell=document.getElementById('navShell');
+  var nav=document.getElementById('nav');
+  if(!shell||!nav)return;
+  function updateShell(){
+    shell.classList.toggle('scrolled',window.scrollY>40);
+  }
+  window.addEventListener('scroll',updateShell,{passive:true});
+  updateShell();
+})();
+</script>
+<script>
+(function(){
+  var shell=document.getElementById('navShell');
+  if(!shell)return;
+  function tick(){shell.classList.toggle('scrolled',window.scrollY>40);}
+  window.addEventListener('scroll',tick,{passive:true});
+  tick();
+})();
+</script>
+<script>
+(function(){
+  var mobClose = document.getElementById('mobClose');
+  var hamBtn   = document.getElementById('hamBtn');
+  var mobMenu  = document.getElementById('mobMenu');
+  if(!mobClose || !hamBtn || !mobMenu) return;
+  function closeMob(){
+    hamBtn.classList.remove('open');
+    mobMenu.classList.remove('open');
+    hamBtn.setAttribute('aria-expanded','false');
+    mobMenu.setAttribute('aria-hidden','true');
+    document.body.style.overflow='';
+    document.body.classList.remove('mob-open');
+  }
+  mobClose.addEventListener('click', closeMob);
+})();
+</script>
+</body>
+</html>
