@@ -1,0 +1,139 @@
+/*
+ * cursor.css  —  Dcasel Planet Cursor System v2
+ * Sun default state → Planet orb on hover
+ * Debris/fragment particles via canvas
+ * 3-D sphere illusion via layered gradients
+ * Include AFTER :root variables are defined.
+ */
+
+/* Hide native cursor on pointer devices */
+@media(pointer:fine){*{cursor:none!important;}}
+
+/* ── Wrapper: zero-size anchor, centred on hot-spot ── */
+#cur3{
+  display:none;position:fixed;pointer-events:none;z-index:9999;
+  transform:translate(-50%,-50%);will-change:left,top;
+  width:0;height:0;
+}
+@media(pointer:fine){#cur3{display:block;}}
+
+/* ── The orb itself ── */
+#curOrb{
+  position:absolute;
+  border-radius:50%;
+  transform:translate(-50%,-50%);
+  will-change:transform,width,height,background,box-shadow;
+  overflow:hidden;
+  filter:drop-shadow(2px 3px 6px rgba(0,0,0,.55));
+  transition:
+    width  .42s cubic-bezier(.34,1.56,.64,1),
+    height .42s cubic-bezier(.34,1.56,.64,1),
+    background .35s ease,
+    box-shadow .35s ease;
+}
+
+/* Specular top-left glint */
+#curOrb::before{
+  content:'';position:absolute;
+  top:10%;left:13%;
+  width:30%;height:19%;
+  background:rgba(255,255,255,.68);
+  border-radius:50%;
+  transform:rotate(-30deg);
+  filter:blur(1px);
+  pointer-events:none;z-index:5;
+}
+/* Bottom-right dark terminator — 3-D depth */
+#curOrb::after{
+  content:'';position:absolute;inset:0;border-radius:50%;
+  background:radial-gradient(
+    circle at 68% 72%,
+    rgba(0,0,0,.38) 0%,
+    transparent 60%
+  );
+  pointer-events:none;z-index:4;
+  mix-blend-mode:multiply;
+}
+
+/* ── Noise texture layer ── */
+#curNoise{
+  position:absolute;inset:0;border-radius:50%;
+  background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='64' height='64'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.1' numOctaves='4' seed='3'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='64' height='64' filter='url(%23n)' opacity='.22'/%3E%3C/svg%3E") center/cover;
+  mix-blend-mode:overlay;
+  pointer-events:none;z-index:3;
+  opacity:.7;
+}
+
+/* ── Saturn ring ── */
+#curRing{
+  position:absolute;border-radius:50%;
+  top:50%;left:50%;
+  transform:translate(-50%,-54%) rotateX(72deg);
+  pointer-events:none;z-index:1;
+  opacity:0;
+  transition:opacity .4s ease;
+}
+#cur3.has-ring #curRing{opacity:1;}
+
+/* ── Atmosphere halo ── */
+#curAtmo{
+  position:absolute;border-radius:50%;
+  top:50%;left:50%;
+  transform:translate(-50%,-50%);
+  pointer-events:none;z-index:0;
+  opacity:0;
+  transition:opacity .35s ease,
+    width  .42s cubic-bezier(.34,1.56,.64,1),
+    height .42s cubic-bezier(.34,1.56,.64,1);
+  filter:blur(6px);
+}
+#cur3.has-atmo #curAtmo{opacity:1;}
+
+/* ── Debris canvas ── */
+#curCanvas{
+  position:fixed;inset:0;pointer-events:none;z-index:9998;
+  opacity:0;transition:opacity .3s ease;
+}
+#cur3.hov ~ #curCanvas,#curCanvas.active{opacity:1;}
+
+/* ── Sun corona keyframes ── */
+@keyframes dcaselCoronaSpin{to{transform:rotate(360deg);}}
+@keyframes dcaselSunPulse{
+  0%,100%{box-shadow:0 0 0 1.5px rgba(212,76,39,.4),0 0 10px 3px rgba(212,76,39,.5),0 0 22px 6px rgba(212,76,39,.18),0 0 40px 12px rgba(212,76,39,.07);}
+  50%    {box-shadow:0 0 0 2px   rgba(212,76,39,.55),0 0 16px 5px rgba(212,76,39,.65),0 0 32px 9px rgba(212,76,39,.24),0 0 54px 16px rgba(212,76,39,.1);}
+}
+#curOrb.is-sun{animation:dcaselSunPulse 2.6s ease-in-out infinite;}
+#curCorona{
+  position:absolute;inset:-55%;border-radius:50%;pointer-events:none;z-index:0;
+  background:conic-gradient(
+    rgba(255,145,25,.11) 0deg,transparent 50deg,
+    rgba(255,80,12,.08)  100deg,transparent 150deg,
+    rgba(255,145,25,.1)  200deg,transparent 250deg,
+    rgba(255,80,12,.08)  300deg,transparent 360deg
+  );
+  animation:dcaselCoronaSpin 5s linear infinite;
+  opacity:0;transition:opacity .3s ease;
+}
+#cur3.is-sun #curCorona{opacity:1;}
+
+/* ── "View" label for cs-cards ── */
+#curLbl{
+  position:fixed!important;
+  top:auto!important;
+  pointer-events:none;
+  z-index:9996;
+  font-size:.56rem;
+  font-weight:700;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  color:var(--ink,#0e0d0b);
+  background:var(--bone,#f4f1ec);
+  border:1px solid rgba(14,13,11,.1);
+  padding:.28rem .7rem;
+  border-radius:100px;
+  white-space:nowrap;
+  opacity:0;
+  transform:translate(-50%,14px);
+  transition:opacity .22s,transform .22s;
+}
+#curLbl.vis{opacity:1;transform:translate(-50%,18px);}
